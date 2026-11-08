@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.EasyPark.Card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Nom Utilisateur"
+                android:textAppearance="@style/TextAppearance.EasyPark.Title"
+                android:textColor="?attr/colorOnSurface" />
+
+            <!-- Role Badge -->
+            <TextView
+                android:id="@+id/tvRoleBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CLIENT"
+                android:textAppearance="@style/TextAppearance.EasyPark.Label"
+                android:textColor="?attr/colorPrimary"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp"
+                android:layout_marginEnd="6dp" />
+
+            <!-- Status Badge -->
+            <TextView
+                android:id="@+id/tvStatusBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Actif"
+                android:textAppearance="@style/TextAppearance.EasyPark.Label"
+                android:textColor="@color/status_free_text"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvUserEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="email@example.com"
+            android:textAppearance="@style/TextAppearance.EasyPark.Label"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/tvUserBalance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Solde : 0.000 DT"
+            android:textAppearance="@style/TextAppearance.EasyPark.Body"
+            android:textColor="?attr/colorOnSurface"
+            android:textStyle="bold"
+            android:layout_marginTop="6dp" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

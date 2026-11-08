@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="com_google_android_gms_fonts_certs">
+        <item>@array/com_google_android_gms_fonts_certs_dev</item>
+        <item>@array/com_google_android_gms_fonts_certs_prod</item>
+    </array>
+    <string-array name="com_google_android_gms_fonts_certs_dev">
+        <item>MIIEqDCCA5CgAwIBAgIJANWFuGx90071MA0GCSqGSIb3DQEBBAUAMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAGCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbTAeFw0wODA0MTUyMzM2NTZaFw0zNTA5MDEyMzM2NTZaMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAGCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbTCCASAwDQYJKoZIhvcNAQEBBQADggENADCCAQgCggEBANbOLggKv+IxTdGNs8/TGFy0PTP6DHThvbbR24kT9ixcOd9W+EaBPWW+wPPKQmsHxajtWjmQwWfna8mZuSeFERRSkkOsndpOVgX1ezXRo/a203fR1N/E+W2n5z9rG+c+4n3mQ2U9yK6gYg0B50gG2K2+r4A1E+b9t2v8c/NlR9Zz+d8/wT+4h/B8/uG0aF9/vE7F/K/9t+yZz8/G/r0B+t/U/a/E+w/w/3+4n+E/4O+G/D/w+v8A+3/t+E+M+C+V+F+L+O+T+G+B+A+M+Q+W+C+A+S+C+G+F+M+T+S+A+G+B+O/r8B/c/9/8/v/2/v/+/3+4/8/y/p/+/0//8/8/6/8/8/4/6/7/8/3/z+j/w/3/q+48+wD//D+Y/X+F/R+T+P+C+w==</item>
+    </string-array>
+    <string-array name="com_google_android_gms_fonts_certs_prod">
+        <item>MIIEQzCCAyugAwIBAgIJAMLgh0ZkSjCNMA0GCSqGSIb3DQEBBAUAMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jLjEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDAeFw0wODA8MjEyMzEzMzRaFw0zNjAxMDcyMzEzMzRaMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jLjEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKwP/B/G/g/w/8H8P/F/B/v/A/3/A/P/Q/W/3/R/r+Q/p/z/C/r/h/8/O/8/Y/g/n/0/n/y/E+K+F+h+t+h+F+l+t+F+l+C+X+G+L/0+v+H+r/0/q/H/H+B/2/P/6+D/6+L/0+r/5+C/4+G/8+P/p/b+J+t+v/0+T/E+v/D/L/b+w/h+H/b+n+d+z/f+o+4+1+f+e+L/M+3/8+3/4+9/E+C+m+B+s+p+H/r+s/9+x+8+q/g+K/p+u+y/A+r+I/w+x/N+F+4+e+q+G/A+F+L+C/s/k+g+W/b+F/l/t/0/a/p+F+4+2+K/H/7/P+2+H/v/h/A/9+F/P/3+D+q/p/8/5/a/Z/w/L/f+o/w+r/L/b/A+S/v/2/d/E/X+e/j+J/a/A/h/V+k/H+v+z/2+M/P/p+G+v+v/p/E/s+I/5/H+M/r/y/e+h+k+e+E+w==</item>
+    </string-array>
+</resources>

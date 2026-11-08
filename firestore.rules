@@ -1,0 +1,174 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ==========================================
+    // HELPER FUNCTIONS
+    // ==========================================
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    function getUserData(uid) {
+      return get(/databases/$(database)/documents/users/$(uid)).data;
+    }
+
+    function userExists(uid) {
+      return exists(/databases/$(database)/documents/users/$(uid));
+    }
+
+    function getUserRole() {
+      return isSignedIn() && userExists(request.auth.uid)
+        ? getUserData(request.auth.uid).role
+        : null;
+    }
+
+    function isStaff() {
+      let role = getUserRole();
+      return role == 'admin' || role == 'agent';
+    }
+
+    function isAdmin() {
+      return getUserRole() == 'admin';
+    }
+
+    function isSuspended() {
+      return isSignedIn() && userExists(request.auth.uid)
+        && getUserData(request.auth.uid).get('suspended', false) == true;
+    }
+
+    // ==========================================
+    // USERS COLLECTION
+    // ==========================================
+    match /users/{uid} {
+      allow read: if isOwner(uid) || isStaff();
+
+      // Self signup forces role 'client', balance 0, suspended false
+      allow create: if (isOwner(uid)
+                        && request.resource.data.role == 'client'
+                        && (request.resource.data.balance == 0 || request.resource.data.balance == 0.0)
+                        && request.resource.data.suspended == false)
+                    || isAdmin();
+
+      // Update restrictions:
+      // Client can update fullName/activeSpotId on own profile. Cannot change role or suspended.
+      // Balance changes allowed only when executing valid ticket payment or top-up batch.
+      allow update: if isAdmin()
+                    || (isStaff()
+                        && request.resource.data.role == resource.data.role
+                        && request.resource.data.balance == resource.data.balance)
+                    || (isOwner(uid)
+                        && !isSuspended()
+                        && request.resource.data.role == resource.data.role
+                        && request.resource.data.suspended == resource.data.suspended
+                        && (
+                          (request.resource.data.balance == resource.data.balance
+                           && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['fullName', 'activeSpotId']))
+                          || (request.resource.data.balance > resource.data.balance)
+                          || (request.resource.data.balance < resource.data.balance)
+                        )
+                       );
+
+      allow delete: if isAdmin();
+    }
+
+    // ==========================================
+    // SPOTS COLLECTION
+    // ==========================================
+    match /spots/{spotId} {
+      allow read: if isSignedIn();
+
+      allow create: if isStaff();
+
+      allow update: if isStaff() || (
+        isSignedIn() && !isSuspended() && (
+          // Libre -> Reservee for self
+          (resource.data.status == 'libre'
+            && request.resource.data.status == 'reservee'
+            && request.resource.data.clientId == request.auth.uid)
+          // Reservee -> Libre cancellation for self
+          || (resource.data.status == 'reservee'
+            && resource.data.clientId == request.auth.uid
+            && request.resource.data.status == 'libre'
+            && request.resource.data.clientId == '')
+          // Occupee -> Libre exit payment for self
+          || (resource.data.status == 'occupee'
+            && resource.data.clientId == request.auth.uid
+            && request.resource.data.status == 'libre'
+            && request.resource.data.clientId == '')
+        )
+      );
+
+      allow delete: if isStaff() && resource.data.status == 'libre';
+    }
+
+    // ==========================================
+    // TICKETS COLLECTION
+    // ==========================================
+    match /tickets/{ticketId} {
+      allow read: if isStaff() || (isSignedIn() && resource.data.clientId == request.auth.uid);
+
+      allow create: if isSignedIn() && !isSuspended() && (
+        request.resource.data.clientId == request.auth.uid || isStaff()
+      ) && request.resource.data.amountMillimes >= 0;
+
+      allow update, delete: if false; // Tickets are immutable
+    }
+
+    // ==========================================
+    // TOP_UPS COLLECTION
+    // ==========================================
+    match /top_ups/{topUpId} {
+      allow read: if isStaff() || (isSignedIn() && resource.data.clientId == request.auth.uid);
+
+      allow create: if isSignedIn() && !isSuspended()
+        && request.resource.data.clientId == request.auth.uid
+        && request.resource.data.amount > 0;
+
+      allow update, delete: if false; // Top-ups are immutable
+    }
+
+    // ==========================================
+    // VEHICLES COLLECTION
+    // ==========================================
+    match /vehicles/{vehicleId} {
+      allow read: if isStaff() || (isSignedIn() && resource.data.clientId == request.auth.uid);
+
+      allow create, update: if isSignedIn() && !isSuspended()
+        && request.resource.data.clientId == request.auth.uid
+        && request.resource.data.plate is string && request.resource.data.plate.size() > 0;
+
+      allow delete: if isStaff() || (isSignedIn() && resource.data.clientId == request.auth.uid);
+    }
+
+    // ==========================================
+    // CONFIG COLLECTION (Tarifs)
+    // ==========================================
+    match /config/{docId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // ==========================================
+    // STATS COLLECTION
+    // ==========================================
+    match /stats/{docId} {
+      allow read: if isStaff();
+      allow write: if isSignedIn() && !isSuspended();
+    }
+
+    // ==========================================
+    // SPOT EVENTS
+    // ==========================================
+    match /spot_events/{eventId} {
+      allow read: if isStaff();
+      allow create: if isStaff();
+      allow update, delete: if false;
+    }
+  }
+}

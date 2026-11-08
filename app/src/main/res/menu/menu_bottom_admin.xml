@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_admin_dash"
+        android:icon="@drawable/ic_home"
+        android:title="Dashboard" />
+
+    <item
+        android:id="@+id/nav_admin_grid"
+        android:icon="@drawable/ic_local_parking"
+        android:title="Plan" />
+
+    <item
+        android:id="@+id/nav_admin_users"
+        android:icon="@drawable/ic_people"
+        android:title="Utilisateurs" />
+
+    <item
+        android:id="@+id/nav_admin_history"
+        android:icon="@drawable/ic_receipt_long"
+        android:title="Historique" />
+
+</menu>

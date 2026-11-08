@@ -1,0 +1,13 @@
+{
+  "name": "easypark-rules-tests",
+  "version": "1.0.0",
+  "description": "Firestore Security Rules Unit Tests for EasyPark",
+  "main": "test/firestore.rules.test.js",
+  "scripts": {
+    "test": "jest test/firestore.rules.test.js --detectOpenHandles"
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^3.0.0",
+    "jest": "^29.0.0"
+  }
+}

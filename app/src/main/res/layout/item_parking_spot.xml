@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardSpot"
+    style="@style/Widget.EasyPark.Card"
+    android:layout_width="match_parent"
+    android:layout_height="125dp"
+    android:layout_margin="6dp"
+    app:cardBackgroundColor="?attr/colorSurfaceVariant"
+    app:strokeWidth="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/ivSpotTypeIcon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_directions_car"
+            app:tint="?attr/colorOnSurfaceVariant"
+            android:importantForAccessibility="no"
+            android:layout_marginBottom="2dp" />
+
+        <TextView
+            android:id="@+id/tvSpotId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.EasyPark.Title"
+            android:textColor="?attr/colorOnSurface"
+            android:maxLines="1" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSpotStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp">
+
+            <TextView
+                android:id="@+id/tvSpotStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.EasyPark.Label"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/tvClientPlate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.EasyPark.Label"
+            android:textColor="?attr/colorOnSurface"
+            android:background="?attr/colorSurface"
+            android:paddingHorizontal="6dp"
+            android:paddingVertical="1dp"
+            android:visibility="gone"
+            android:layout_marginTop="4dp"
+            android:maxLines="1" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

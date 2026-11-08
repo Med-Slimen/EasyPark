@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <ImageView
+        android:id="@+id/empty_icon"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginBottom="16dp"
+        android:alpha="0.5"
+        app:tint="?attr/colorOnSurfaceVariant"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_local_parking" />
+
+    <TextView
+        android:id="@+id/empty_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/empty_title_default"
+        android:textAppearance="@style/TextAppearance.EasyPark.Title"
+        android:textColor="?attr/colorOnSurface"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/empty_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="@string/empty_message_default"
+        android:textAppearance="@style/TextAppearance.EasyPark.Body"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/empty_button"
+        style="@style/Widget.EasyPark.Button.Tonal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/empty_button_default"
+        android:visibility="gone" />
+
+</LinearLayout>

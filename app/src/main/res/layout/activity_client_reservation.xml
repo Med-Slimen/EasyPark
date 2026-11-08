@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        style="@style/Widget.EasyPark.Toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:title="Réservation Active"
+        app:navigationIcon="?attr/homeAsUpIndicator" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_above="@id/bottomBar"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:gravity="center_horizontal">
+
+            <!-- Empty State -->
+            <include
+                android:id="@+id/emptyState"
+                layout="@layout/empty_state"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvNoReservation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aucune réservation active pour le moment."
+                android:textAppearance="@style/TextAppearance.EasyPark.Body"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:visibility="gone"
+                android:layout_marginTop="40dp" />
+
+            <!-- Active Card Container -->
+            <LinearLayout
+                android:id="@+id/cardActive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/tvSpotTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Place A1"
+                    android:textAppearance="@style/TextAppearance.EasyPark.Display"
+                    android:textColor="?attr/colorOnSurface"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/tvStatusMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Stationnement en cours"
+                    android:textAppearance="@style/TextAppearance.EasyPark.Body"
+                    android:textColor="?attr/colorPrimary"
+                    android:layout_marginBottom="24dp" />
+
+                <!-- Large Timer Display Card -->
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/Widget.EasyPark.Card"
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    app:cardCornerRadius="110dp"
+                    app:cardBackgroundColor="?attr/colorSurfaceVariant"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="?attr/colorPrimary"
+                    android:layout_marginBottom="24dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/tvTimerLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Durée écoulée"
+                            android:textAppearance="@style/TextAppearance.EasyPark.Label"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+
+                        <TextView
+                            android:id="@+id/tvTimerValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="00:00"
+                            android:textAppearance="@style/TextAppearance.EasyPark.Display"
+                            android:textSize="36sp"
+                            android:textColor="?attr/colorOnSurface"
+                            android:layout_marginTop="4dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/tvEstimatedCost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Coût estimé : 2.000 DT"
+                    android:textAppearance="@style/TextAppearance.EasyPark.Title"
+                    android:textColor="?attr/colorPrimary"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:id="@+id/tvMinDurationWarning"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Durée minimale de 3 min"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.EasyPark.Label"
+                    android:textColor="?attr/colorError"
+                    android:visibility="gone"
+                    android:layout_marginBottom="12dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Anchored Bottom Bar -->
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="?attr/colorSurface">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_marginBottom="12dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPayAndExit"
+            style="@style/Widget.EasyPark.Button"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Payer et quitter"
+            android:layout_marginBottom="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancelReservation"
+            style="@style/Widget.EasyPark.Button.Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/colorError"
+            android:text="Annuler la réservation" />
+
+    </LinearLayout>
+</RelativeLayout>

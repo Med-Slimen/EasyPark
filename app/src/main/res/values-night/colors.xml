@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Status Colors - Dark -->
+    <color name="status_free_text">#4ADE80</color>
+    <color name="status_free_container">#14532D</color>
+    <color name="status_reserved_text">#FBBF24</color>
+    <color name="status_reserved_container">#78350F</color>
+    <color name="status_occupied_text">#F87171</color>
+    <color name="status_occupied_container">#7F1D1D</color>
+</resources>
